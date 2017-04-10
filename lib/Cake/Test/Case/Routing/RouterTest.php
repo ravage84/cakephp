@@ -92,6 +92,18 @@ class RouterTest extends CakeTestCase {
 	}
 
 /**
+ * Test that Router uses App.base to build URL's when there are no stored
+ * request objects.
+ *
+ * @return void
+ */
+	public function testBaseUrlArrayWithBasePath() {
+		Configure::write('App.base', '/cakephp');
+		Router::fullBaseUrl('http://example.com');
+		$this->assertEquals('http://example.com/cakephp/tasks', Router::url(array('controller' => 'tasks'), true));
+	}
+
+/**
  * testRouteDefaultParams method
  *
  * @return void
